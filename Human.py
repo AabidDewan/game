@@ -1,3 +1,4 @@
+#This class is to describe the stats of all the characters in the game
 class Human:
     def __init__(self, name, age, gender, health, speed, strength, durability, ability):
         self.__name = name
