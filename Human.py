@@ -1,4 +1,3 @@
-#This class is to describe the stats of all the characters in the game
 class Human:
     def __init__(self, name, age, gender, health, speed, strength, durability, ability):
         self.__name = name
@@ -9,6 +8,7 @@ class Human:
         self.__strength = strength
         self.__durability = durability
         self.__ability = ability
+        self.inventory = {}
 
     def name(self):
         print("My name is", self.__name)
@@ -26,7 +26,7 @@ class Human:
         print("Health:", self.__health)
 
     def speed(self):
-        print("speed:", self.__speed)
+        print("Speed:", self.__speed)
 
     def strength(self):
         print("Strength:", self.__strength)
@@ -36,3 +36,31 @@ class Human:
 
     def ability(self):
         print("Ability:", self.__ability)
+
+    # New methods for managing an inventory:
+    def add_to_inventory(self, item, quantity=1):
+        if item in self.inventory:
+            self.inventory[item] += quantity
+        else:
+            self.inventory[item] = quantity
+        print(f"Added {quantity} {item}(s) to inventory.")
+
+    def remove_from_inventory(self, item, quantity=1):
+        if item not in self.inventory:
+            print("Item not in inventory.")
+            return
+        if quantity >= self.inventory[item]:
+            del self.inventory[item]
+            print(f"Removed {item} from inventory.")
+        else:
+            self.inventory[item] -= quantity
+            print(f"Removed {quantity} {item}(s) from inventory.")
+
+    def list_inventory(self):
+        if not self.inventory:
+            print("Inventory is empty.")
+        else:
+            for item, qty in self.inventory.items():
+                print(f"{item}: {qty}")
+
+
